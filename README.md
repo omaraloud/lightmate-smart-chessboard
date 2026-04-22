@@ -49,18 +49,16 @@ The system runs a continuous loop:
 
 ## Demo
 
-### PCB
+### Hardware (PCB + Assembly)
 
+![PCB Layout](hardware/pcb_layout.png)
 ![Full Board](images/full_board.jpg)
+![PCB Assembled](images/pcb_assembled.jpg)
+
 
 ### Enclosure CAD Render
 
 ![CAD Render](images/cad_render.png)
-
-### Hardware (PCB + Assembly)
-
-![PCB Layout](hardware/pcb_layout.png)
-![PCB Assembled](images/pcb_assembled.jpg)
 
 ### Final System with Enclosure
 
