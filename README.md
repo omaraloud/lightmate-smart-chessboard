@@ -49,11 +49,27 @@ The system runs a continuous loop:
 
 ## Demo
 
-![Board](images/full_board.jpg)
+### Full System
+
+![Full Board](images/full_board.jpg)
+
+### LED Move Highlighting
+
 ![LED Highlighting](images/led_highlighting.jpg)
+
+### Hardware (PCB + Assembly)
+
+![PCB Layout](hardware/pcb_layout.png)
 
 ---
 
+### Demo Video
+
+A short demonstration of the system in action:
+
+[Watch Demo Video](demo/demo_video.mp4)
+
+---
 ## Challenges
 
 - High current draw from LEDs  
