@@ -12,7 +12,7 @@ This system detects piece movement using Hall-effect sensors and provides visual
 - LED highlighting of legal moves  
 - Raspberry Pi-based move validation (Python)  
 - Expandable to online gameplay (Lichess API)  
-- Touchscreen interface support  
+- Screen interface support  
 
 ---
 
@@ -21,7 +21,7 @@ This system detects piece movement using Hall-effect sensors and provides visual
 - Hall sensors connected to MCP23017 expanders (I2C)  
 - Raspberry Pi processes board state  
 - LEDs controlled via SPI through a level shifter  
-- Touchscreen provides user interface  
+- 3.5" HDMI LCD Touchscreen (Waveshare), provides user interface via buttons 
 
 ---
 
