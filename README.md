@@ -33,7 +33,7 @@ This system detects piece movement using Hall-effect sensors and provides visual
 - SN74HCT125 level shifter  
 - Raspberry Pi 4  
 - Custom PCB  
-
+[Schematic (PDF)](hardware/schematic.pdf)
 ---
 
 ## Software
