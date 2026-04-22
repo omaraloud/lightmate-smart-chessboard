@@ -61,13 +61,18 @@ The system runs a continuous loop:
 
 ![PCB Layout](hardware/pcb_layout.png)
 
----
-
 ### Demo Video
 
 A short demonstration of the system in action:
 
 [Watch Demo Video](demo/demo_video.mp4)
+
+---
+## Mechanical Design
+
+### Enclosure CAD Render
+
+![CAD Render](images/cad_render.png)
 
 ---
 ## Challenges
