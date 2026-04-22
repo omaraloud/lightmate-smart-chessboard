@@ -85,7 +85,8 @@ The system runs a continuous loop:
 
 ## Documentation
 
-- Final Report: docs/LightMate_Final_Report.pdf  
+- Final Report: docs/LightMate_Final_Report.pdf
+- Poster: docs/LightMate_Poster.pdf  
 
 ---
 
