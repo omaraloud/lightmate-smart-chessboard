@@ -75,11 +75,11 @@ The system runs a continuous loop:
 
 ## Future Work
 
-- Finalize stable PCB revision  
-- Complete enclosure design and integration  
-- Implement full Lichess online gameplay  
-- Improve graphical user interface  
-- Optimize LED performance and power usage  
+- Miniaturized Compute (CM4 Integration): Replace Raspberry Pi 4 with a Compute Module integrated into a custom PCB to reduce wiring and enable a smaller, more compact enclosure.
+- Stronger Chess Engine: Integrate advanced engines (e.g., Stockfish) for real-time analysis, move evaluation, and training feedback.
+- Wireless & App Connectivity: Add mobile/web interface for game tracking, remote play, and cloud synchronization.
+- Portable Design: Implement battery power and optimized power management for a fully portable system.
+- Improved Sensor Accuracy: Enhance Hall sensor reliability and reduce magnetic interference between adjacent pieces.
 
 ---
 
@@ -91,12 +91,14 @@ The system runs a continuous loop:
 
 ## Contributors
 
-- Omar AlOud – Hardware Design, PCB, System Integration  
-- Anas AlDarwashi – Software, Raspberry Pi Integration  
-- James Bridges – PCB Layout, Hardware Integration  
+- Omar AlOud – Hardware Schematic Design, CAD Design  
+- Anas AlDarwashi – Software Design, Raspberry Pi Integration  
+- James Bridges – PCB Design  
 
 ---
 
 ## Acknowledgments
 
 Special thanks to Dr. Brickley and Dr. Martin for their guidance and support.
+ELEG/CPEG498 & 499: Senior Design
+University of Delaware
