@@ -49,18 +49,22 @@ The system runs a continuous loop:
 
 ## Demo
 
-### Full System
+### PCB
 
 ![Full Board](images/full_board.jpg)
 
-### LED Move Highlighting
+### Enclosure CAD Render
 
-![LED Highlighting](images/led_highlighting.jpg)
+![CAD Render](images/cad_render.png)
 
 ### Hardware (PCB + Assembly)
 
 ![PCB Layout](hardware/pcb_layout.png)
 ![PCB Assembled](images/pcb_assembled.jpg)
+
+### Final System with Enclosure
+
+![Final System](images/final_system.jpg)
 
 ### Demo Video
 
@@ -69,13 +73,7 @@ A short demonstration of the system in action:
 [Watch Demo Video](demo/demo_video.mp4)
 
 ---
-## Mechanical Design
 
-### Enclosure CAD Render
-
-![CAD Render](images/cad_render.png)
-
----
 ## Challenges
 
 - High current draw from LEDs  
