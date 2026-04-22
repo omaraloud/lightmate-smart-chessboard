@@ -60,6 +60,7 @@ The system runs a continuous loop:
 ### Hardware (PCB + Assembly)
 
 ![PCB Layout](hardware/pcb_layout.png)
+![PCB Assembled](images/pcb_assembled.jpg)
 
 ### Demo Video
 
