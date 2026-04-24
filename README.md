@@ -119,5 +119,7 @@ A short demonstration of the system in action:
 ## Acknowledgments
 
 Special thanks to Dr. Brickley and Dr. Martin for their guidance and support.
+
 ELEG/CPEG498 & 499: Senior Design
-University of Delaware
+
+University of Delaware, Newark, DE, USA
