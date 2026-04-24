@@ -58,7 +58,7 @@ The system runs a continuous loop:
 
 ### Enclosure CAD Render
 
-![CAD Render](images/cad_render.png)
+![CAD Render](images/cad_render.jpeg)
 
 ### Final System with Enclosure
 
