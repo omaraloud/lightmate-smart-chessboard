@@ -21,7 +21,7 @@ This system detects piece movement using Hall-effect sensors and provides visual
 - Hall sensors connected to MCP23017 expanders (I2C)  
 - Raspberry Pi processes board state  
 - LEDs controlled via SPI through a level shifter  
-- 3.5" HDMI LCD Touchscreen (Waveshare), provides user interface via buttons 
+- 3.5" HDMI LCD Touchscreen (Waveshare), provides user interface via buttons
 
 ---
 
@@ -31,8 +31,9 @@ This system detects piece movement using Hall-effect sensors and provides visual
 - 81 × SK9822 RGB LEDs  
 - MCP23017 I/O expanders  
 - SN74HCT125 level shifter  
+- SparkFun Qwiic Directional Pad
 - Raspberry Pi 4  
-- Custom PCB  
+- Custom 2 Layer PCB  
 [Schematic (PDF)](hardware/schematic.pdf)
 ---
 
