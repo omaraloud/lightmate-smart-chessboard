@@ -98,7 +98,6 @@ A short demonstration of the system in action:
 - Stronger Chess Engine: Integrate advanced engines (e.g., Stockfish) for real-time analysis, move evaluation, and training feedback.
 - Wireless & App Connectivity: Add mobile/web interface for game tracking, remote play, and cloud synchronization.
 - Portable Design: Implement battery power and optimized power management for a fully portable system.
-- Improved Sensor Accuracy: Enhance Hall sensor reliability and reduce magnetic interference between adjacent pieces.
 
 ---
 
