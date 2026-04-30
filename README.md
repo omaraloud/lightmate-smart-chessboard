@@ -118,8 +118,8 @@ A short demonstration of the system in action:
 
 ## Acknowledgments
 
-Special thanks to Dr. Brickley and Dr. Martin for their guidance and support.
+Special thanks to Dr. Joseph Brickley and Dr. Richard Martin for their guidance and support.
 
-ELEG/CPEG498 & 499: Senior Design
+CAPSTONE Senior Design 2025-2026
 
-University of Delaware, Newark, DE, USA
+Electrical & Computer Engineering Department, University of Delaware, Newark, DE, USA
