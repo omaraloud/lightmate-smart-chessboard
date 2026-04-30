@@ -1,6 +1,6 @@
-# LightMate: Smart Chessboard
+# Light Mate: Smart Chessboard
 
-LightMate is a smart, connected chessboard that combines the tactile experience of physical chess with real-time digital analysis and feedback.
+Light Mate is a smart, connected chessboard that combines the tactile experience of physical chess with real-time digital analysis and feedback.
 
 ## Overview
 
