@@ -6,6 +6,13 @@ LightMate is a smart, connected chessboard that combines the tactile experience 
 
 This system detects piece movement using Hall-effect sensors and provides visual feedback through addressable RGB LEDs. A Raspberry Pi processes the board state, validates moves, and enables future online gameplay integration.
 
+## Team
+
+- [James Bridges](https://github.com/Phisycal) – PCB Design
+- [Omar Al Oud](https://github.com/omaraloud) – Schematic Design, CAD Design  
+- [Anas Al Darwashi](https://github.com/darwashiOM) - Software Design, Raspberry Pi Integration  
+  
+
 ## Features
 
 - Real-time piece detection using Hall sensors  
@@ -106,13 +113,6 @@ A short demonstration of the system in action:
 - [Final Report](docs/LightMate_Final_Report.pdf)
 - [Poster](docs/LightMate_Poster.pdf)  
 
----
-
-## Contributors
-
-- Omar AlOud – Hardware Schematic Design, CAD Design  
-- Anas AlDarwashi – Software Design, Raspberry Pi Integration  
-- James Bridges – PCB Design  
 
 ---
 
