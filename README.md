@@ -46,7 +46,7 @@ This system detects piece movement using Hall-effect sensors and provides visual
 
 ## Software
 
-The full Raspberry Pi/Lichess kiosk implementation lives in [`software/chess-board`](software/chess-board).
+The full Raspberry Pi/Lichess kiosk implementation lives in [`software`](software).
 
 The system runs a continuous loop:
 
