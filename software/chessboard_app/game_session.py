@@ -180,6 +180,10 @@ class GameSession:
             "status": self.status,
             "solutionIndex": self.puzzle_index,
             "solutionLength": len(self.puzzle_solution),
+            "lastResult": None,
+            "attemptedMove": None,
+            "expectedMove": None,
+            "message": "Set up the puzzle.",
         }
 
     def start_puzzle(self, occupancy: Mapping[str, bool]) -> None:
@@ -209,6 +213,8 @@ class GameSession:
                     "message": "Board synced. Puzzle is complete.",
                 }
             return {"accepted": False, "message": "Puzzle is already complete"}
+        if self.status == "puzzle_failed":
+            return {"accepted": False, "kind": "failed", "message": "Puzzle failed. Start the next puzzle."}
         if self.last_occupancy is None:
             return {"accepted": False, "message": "Start the puzzle first"}
 
@@ -220,16 +226,27 @@ class GameSession:
                 "message": "Board synced. Play the next puzzle move.",
             }
 
-        result = self.detect_move_from_last_snapshot(after_occupancy, allow_unsynced=allow_unsynced)
+        expected = self._next_solution_move()
+        if self._expected_solution_move_matches(expected, after_occupancy, allow_unsynced=allow_unsynced):
+            result = MoveDetectionResult("move", expected, "expected puzzle move")
+        else:
+            result = self.detect_move_from_last_snapshot(after_occupancy, allow_unsynced=allow_unsynced)
         if result.kind != "move" or not result.uci:
             return {"accepted": False, "kind": result.kind, "message": result.reason or "Move is not ready"}
 
-        expected = self._next_solution_move()
         if result.uci != expected:
+            self.status = "puzzle_failed"
+            if self.puzzle is not None:
+                self.puzzle["lastResult"] = "wrong"
+                self.puzzle["attemptedMove"] = result.uci
+                self.puzzle["expectedMove"] = expected
+                self.puzzle["message"] = "Wrong move."
+            self._update_puzzle_public_fields()
             return {
                 "accepted": False,
                 "move": result.uci,
                 "expected": expected,
+                "game": self.public_state(),
                 "message": "That is not the puzzle move",
             }
 
@@ -246,6 +263,11 @@ class GameSession:
             self.last_move = reply
             self.puzzle_index += 1
         self.status = "puzzle_complete" if self.puzzle_index >= len(self.puzzle_solution) else "puzzle_play"
+        if self.puzzle is not None:
+            self.puzzle["lastResult"] = "solved" if self.status == "puzzle_complete" else "correct"
+            self.puzzle["attemptedMove"] = result.uci
+            self.puzzle["expectedMove"] = expected
+            self.puzzle["message"] = "Puzzle solved." if self.status == "puzzle_complete" else "Correct move."
         self._update_puzzle_public_fields()
         return {
             "accepted": True,
@@ -254,6 +276,42 @@ class GameSession:
             "complete": self.status == "puzzle_complete",
             "game": self.public_state(),
         }
+
+    def _expected_solution_move_matches(
+        self,
+        expected: str | None,
+        after_occupancy: Mapping[str, bool],
+        allow_unsynced: bool = False,
+    ) -> bool:
+        if not expected:
+            return False
+        try:
+            move = chess.Move.from_uci(expected)
+        except ValueError:
+            return False
+        if move not in self.board.legal_moves:
+            return False
+        candidate = self.board.copy()
+        candidate.push(move)
+        expected_before = self.expected_occupancy()
+        expected_after = expected_occupancy_from_board(candidate)
+        required = {
+            square
+            for square in chess.SQUARE_NAMES
+            if expected_before[square] != expected_after[square]
+        }
+        required.add(chess.square_name(move.from_square))
+        required.add(chess.square_name(move.to_square))
+        for square in required:
+            if (
+                not allow_unsynced
+                and self.last_occupancy is not None
+                and bool(self.last_occupancy.get(square, False)) != expected_before[square]
+            ):
+                return False
+            if bool(after_occupancy.get(square, False)) != expected_after[square]:
+                return False
+        return True
 
     def auto_mark_synced(self) -> bool:
         return self.mode == "puzzle" and self.status in {"puzzle_play", "puzzle_complete"}

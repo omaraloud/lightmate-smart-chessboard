@@ -926,7 +926,21 @@ def create_app(
         for (var i = 0; i < actions.length; i++) actionHtml += '<div class="item' + selectedClass(i) + '"><span>' + actions[i][0] + '</span><small>' + actions[i][1] + '</small></div>';
         actionHtml += '</section>';
         setCompactBoardChrome(true);
-        appEl.innerHTML = '<div class="gameLayout">' + renderPositionBoard(game.pieces || {}, game.playerColor || "white", gameBoardOrientation(game)) + '<div class="gameDetails"><div>' + escapeHtml(puzzleHelpText(sync, puzzle)) + '</div>' + actionHtml + '<div>You are: <code>' + escapeHtml(game.playerColor || "unknown") + '</code></div><div>Puzzle: <code>' + escapeHtml(puzzle.id || "none") + '</code> Rating: <code>' + escapeHtml(puzzle.rating || "--") + '</code></div><div>Status: <code>' + escapeHtml(puzzle.status || game.status || "setup") + '</code> Turn: <code>' + escapeHtml(game.turn || "white") + '</code></div><div>Move: <code>' + escapeHtml((puzzle.solutionIndex || 0) + "/" + (puzzle.solutionLength || 0)) + '</code></div>' + renderDebugRows(game, sync) + '</div></div>';
+        appEl.innerHTML = '<div class="gameLayout">' + renderPuzzleStatusBanner(puzzle, sync) + renderPositionBoard(game.pieces || {}, game.playerColor || "white", gameBoardOrientation(game)) + '<div class="gameDetails"><div>' + escapeHtml(puzzleHelpText(sync, puzzle)) + '</div>' + actionHtml + '<div>You are: <code>' + escapeHtml(game.playerColor || "unknown") + '</code></div><div>Puzzle: <code>' + escapeHtml(puzzle.id || "none") + '</code> Rating: <code>' + escapeHtml(puzzle.rating || "--") + '</code></div><div>Status: <code>' + escapeHtml(puzzle.status || game.status || "setup") + '</code> Turn: <code>' + escapeHtml(game.turn || "white") + '</code></div><div>Move: <code>' + escapeHtml((puzzle.solutionIndex || 0) + "/" + (puzzle.solutionLength || 0)) + '</code></div><div>Attempt: <code>' + escapeHtml(puzzle.attemptedMove || "none") + '</code> Expected: <code>' + escapeHtml(puzzle.expectedMove || "none") + '</code></div>' + renderDebugRows(game, sync) + '</div></div>';
+      }
+      function renderPuzzleStatusBanner(puzzle, sync) {
+        var text = puzzleStatusText(puzzle, sync);
+        var klass = puzzle && puzzle.status === "complete" ? "good" : (puzzle && puzzle.status === "failed" ? "alert" : "");
+        return '<div class="gameStatusBanner ' + klass + '">' + escapeHtml(text) + '</div>';
+      }
+      function puzzleStatusText(puzzle, sync) {
+        puzzle = puzzle || {};
+        if (puzzle.status === "complete") return "Puzzle solved";
+        if (puzzle.status === "failed") return "Puzzle failed - Wrong move";
+        if (puzzle.lastResult === "correct") return "Correct move";
+        if (sync && !sync.matches && puzzle.status === "setup") return "Set up puzzle";
+        if (puzzle.status === "play") return "Puzzle move";
+        return "Puzzle ready";
       }
       function gameHelpText(sync) {
         if (!latestState || !latestState.game || !latestState.game.id) return "Set the physical board first.";
@@ -935,6 +949,7 @@ def create_app(
       }
       function puzzleHelpText(sync, puzzle) {
         if (puzzle && puzzle.status === "complete") return "Puzzle solved.";
+        if (puzzle && puzzle.status === "failed") return "Wrong move. Expected " + (puzzle.expectedMove || "the puzzle move") + ". Start the next puzzle.";
         if (sync && !sync.matches) return "Set up every lit square before starting.";
         return "Play the lit move, then submit it.";
       }
@@ -1358,6 +1373,11 @@ def create_app(
         renderScreen();
         request("POST", "/api/puzzle/submit-physical", {}, function (result) {
           kioskState.message = result && result.accepted ? (result.complete ? "Puzzle solved" : "Correct: " + result.move) : (result && result.message ? result.message : "Move not accepted");
+          if (result && result.game) {
+            if (!latestState) latestState = {};
+            latestState.game = result.game;
+            latestState.sync = result.sync || latestState.sync;
+          }
           refresh();
         }, function (xhr) { kioskState.message = "Error: " + (xhr.responseText || xhr.status); renderScreen(); });
       }

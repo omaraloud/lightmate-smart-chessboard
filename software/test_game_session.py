@@ -173,6 +173,7 @@ class GameSessionTest(unittest.TestCase):
         self.assertEqual(result["reply"], "b8c6")
         self.assertEqual(session.last_move, "b8c6")
         self.assertEqual(session.public_state()["puzzle"]["status"], "complete")
+        self.assertEqual(session.public_state()["puzzle"]["lastResult"], "solved")
         self.assertEqual(session.public_state()["puzzle"]["solutionIndex"], 2)
 
     def test_puzzle_rejects_wrong_physical_move_without_advancing(self):
@@ -188,6 +189,40 @@ class GameSessionTest(unittest.TestCase):
         self.assertEqual(result["accepted"], False)
         self.assertEqual(result["expected"], "g1f3")
         self.assertEqual(session.public_state()["puzzle"]["solutionIndex"], 0)
+        self.assertEqual(session.public_state()["puzzle"]["status"], "failed")
+        self.assertEqual(session.public_state()["puzzle"]["lastResult"], "wrong")
+        self.assertEqual(session.public_state()["puzzle"]["attemptedMove"], "d2d4")
+        self.assertEqual(session.public_state()["puzzle"]["expectedMove"], "g1f3")
+
+    def test_puzzle_accepts_expected_capture_when_binary_sensors_make_destination_ambiguous(self):
+        session = GameSession()
+        session.mode = "puzzle"
+        session.status = "puzzle_play"
+        session.game_id = "puzzle-game"
+        session.board = chess.Board("8/2q3P1/7k/8/3K4/6Q1/8/8 b - - 5 78")
+        session.puzzle_solution = ["c7g3"]
+        session.puzzle_index = 0
+        session.puzzle = {
+            "id": "Qg6Bs",
+            "rating": 1423,
+            "themes": [],
+            "plays": 1,
+            "initialPly": 152,
+            "status": "play",
+            "solutionIndex": 0,
+            "solutionLength": 1,
+        }
+        before = expected_occupancy_from_board(session.board)
+        after = dict(before)
+        after["c7"] = False
+        session.mark_synced(before)
+
+        result = session.submit_puzzle_move(after, allow_unsynced=True)
+
+        self.assertEqual(result["accepted"], True)
+        self.assertEqual(result["move"], "c7g3")
+        self.assertEqual(session.public_state()["puzzle"]["status"], "complete")
+        self.assertEqual(session.public_state()["puzzle"]["lastResult"], "solved")
 
 
 class ClockParsingTest(unittest.TestCase):
