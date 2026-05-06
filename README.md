@@ -78,7 +78,7 @@ The system runs a continuous loop:
 
 A short demonstration of the system in action:
 
-[Watch Demo Video](demo/demo_video.mp4)
+[Watch Demo Video](https://drive.google.com/drive/folders/1jBkGBo9PXHadvFKU8GVhbqAGufoQU52n?usp=drive_link)
 
 ---
 
