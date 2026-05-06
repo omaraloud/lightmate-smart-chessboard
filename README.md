@@ -61,7 +61,7 @@ The system runs a continuous loop:
 
 ![PCB Layout](hardware/pcb_layout.png)
 ![Full Board](images/full_board.jpg)
-![PCB Assembled](images/pcb_assembled.jpg)
+![PCB Assembled](images/pcb_assembled.jpeg)
 
 
 ### Enclosure CAD Render
@@ -70,7 +70,7 @@ The system runs a continuous loop:
 
 ### Final System with Enclosure
 
-![Final System](images/final_system.jpg)
+![Final System](images/final_system.jpeg)
 
 ### Demo Video
 
