@@ -1,0 +1,16 @@
+[Unit]
+Description=Physical Lichess Chessboard Kiosk
+After=graphical.target chessboard.service
+Wants=chessboard.service
+
+[Service]
+Type=simple
+User=pi
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/pi/.Xauthority
+ExecStart=/bin/sh -c 'until /usr/bin/curl --fail --silent --max-time 1 http://127.0.0.1:8000/api/state >/dev/null; do sleep 1; done; exec /usr/bin/chromium-browser --user-data-dir=/home/pi/.config/chessboard-kiosk --password-store=basic --use-mock-keychain --kiosk --start-fullscreen --noerrdialogs --disable-infobars --disable-session-crashed-bubble --disable-features=TranslateUI --check-for-update-interval=31536000 http://127.0.0.1:8000'
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=graphical.target

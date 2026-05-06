@@ -1,0 +1,16 @@
+[Unit]
+Description=Physical Lichess Chessboard Backend
+After=NetworkManager.service chessboard-hotspot.service
+Wants=chessboard-hotspot.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/pi/Desktop/chess-board
+Environment=PATH=/home/pi/Desktop/chess-board/.venv/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/pi/Desktop/chess-board/.venv/bin/python3 /home/pi/Desktop/chess-board/run_server.py --hardware --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

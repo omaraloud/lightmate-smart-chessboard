@@ -1,0 +1,16 @@
+[Unit]
+Description=Physical Chessboard Wi-Fi Setup Hotspot
+After=NetworkManager.service
+Wants=NetworkManager.service
+Before=chessboard.service
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/home/pi/Desktop/chess-board
+Environment=PATH=/home/pi/Desktop/chess-board/.venv/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/pi/Desktop/chess-board/.venv/bin/python3 /home/pi/Desktop/chess-board/ensure_wifi_or_hotspot.py
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

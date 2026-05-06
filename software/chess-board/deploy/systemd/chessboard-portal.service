@@ -1,0 +1,16 @@
+[Unit]
+Description=Physical Chessboard Captive Portal Redirect
+After=chessboard-hotspot.service chessboard.service
+Wants=chessboard-hotspot.service chessboard.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/pi/Desktop/chess-board
+Environment=PATH=/home/pi/Desktop/chess-board/.venv/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/pi/Desktop/chess-board/.venv/bin/python3 /home/pi/Desktop/chess-board/setup_portal.py
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

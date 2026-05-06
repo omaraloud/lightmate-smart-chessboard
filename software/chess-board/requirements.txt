@@ -1,0 +1,9 @@
+adafruit-blinka
+adafruit-circuitpython-dotstar
+adafruit-circuitpython-mcp230xx
+evdev
+fastapi
+python-chess
+qrcode
+smbus2
+uvicorn
