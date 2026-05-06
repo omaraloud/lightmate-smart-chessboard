@@ -85,7 +85,8 @@ A short demonstration of the system in action:
 - High current draw from LEDs  
 - Signal integrity across long SPI LED chains  
 - Magnetic interference between pieces  
-- Debugging power issues on the 3.3V rail  
+- Debugging power issues on the 3.3V rail
+- Printers available at the University could not print our full enclosure in time, so we had to make compromises by printing in parts and in lower quality (Budget constraints prevented 3rd party manfucaturing). 
 
 ---
 
