@@ -112,7 +112,7 @@ A short demonstration of the system in action:
 
 ## Documentation
 
-- [Final Report](docs/LightMate_Final_Report.pdf)
+- [Final Report](docs/LightMate_FinalReport.pdf)
 - [Poster](docs/LightMate_Poster.pdf)
 - [Presentation](docs/lightmate_presentation.pdf)
 
