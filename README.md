@@ -18,7 +18,7 @@ This system detects piece movement using Hall-effect sensors and provides visual
 - Real-time piece detection using Hall sensors  
 - LED highlighting of legal moves  
 - Raspberry Pi-based move validation (Python)  
-- Expandable to online gameplay (Lichess API)  
+- Online gameplay (Lichess API)  
 - Screen interface support  
 
 ---
@@ -47,6 +47,8 @@ This system detects piece movement using Hall-effect sensors and provides visual
 ## Software
 
 The full Raspberry Pi/Lichess kiosk implementation lives in [`software`](software).
+
+(Some comments suggest that LED chain is faulty, was fixed manually and now project is fully functional)
 
 The system runs a continuous loop:
 
